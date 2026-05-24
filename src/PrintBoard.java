@@ -1,3 +1,4 @@
+package src;
 public class PrintBoard {
     public void printBoard(long totalBoard, String boardColor) {
         int rowCounter;
