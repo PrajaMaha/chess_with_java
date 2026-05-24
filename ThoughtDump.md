@@ -1,6 +1,7 @@
 # Requirements:
 
 ## Pieces:
+    - need to be able to move (all must have the same `move` function that takes in a location)
  ### Pawn:
  ### Rook:
  ### Knight:
