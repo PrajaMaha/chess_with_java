@@ -1,4 +1,4 @@
-package src;
+package src.main.java;
 public class FlipBoard {
     public long flipBoard(long totalBoard) {
         long mask = 0x8000000000000000L;
