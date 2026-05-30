@@ -2,37 +2,37 @@ package Calculations;
 
 public class TilePackage {
     private boolean playerColour;
-    private String startingTileS;
-    private String endingTileS;
-    private int startingTileI;
-    private int endingTileI;
+    private String startTileS;
+    private String endTileS;
+    private int startTileI;
+    private int endTileI;
 
     private long distance;
 
-    private TilePackage(boolean playerColour, String startingTileS, String endingTileS) {
+    public TilePackage(boolean playerColour, String startTileS, String endTileS) {
         this.playerColour = playerColour;
-        this.startingTileS = startingTileS;
-        this.endingTileS = endingTileS;
+        this.startTileS = startTileS;
+        this.endTileS = endTileS;
     }
 
-    public String getStartingTileS() {
-        return startingTileS;
+    public String getStartTileS() {
+        return startTileS;
     }
-    public String getEndingTileS() {
-        return endingTileS;
+    public String getEndTileS() {
+        return endTileS;
     }
 
-    public long getStartingTileI() {
-        return startingTileI;
+    public long getStartTileI() {
+        return startTileI;
     }
-    public void setStartingTileI(int StartingTileI) {
-        this.startingTileI = StartingTileI;
+    public void setStartTileI(int StartTileI) {
+        this.startTileI = StartTileI;
     }
-    public long getEndingTileI() {
-        return endingTileI;
+    public long getEndTileI() {
+        return endTileI;
     }
-    public void setEndingTileI(int endingTileI) {
-        this.endingTileI = endingTileI;
+    public void setEndTileI(int endTileI) {
+        this.endTileI = endTileI;
     }
 
     public long getDistance() {

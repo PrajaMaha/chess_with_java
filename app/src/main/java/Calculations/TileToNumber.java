@@ -3,14 +3,6 @@ package Calculations;
 import SelfDefinedErrors.InvalidTileError;
 
 public class TileToNumber {
-    // public int h1 = 0;
-    // public int g1 = 1;
-    // public int f1 = 2;
-    // public int e1 = 3;
-    // public int d1 = 4;
-    // public int c1 = 5;
-    // public int b1 = 6;
-    // public int a1 = 7;
 
     public TilePackage tileToNumber(TilePackage returnPackage) throws InvalidTileError {
         try {
@@ -19,70 +11,75 @@ public class TileToNumber {
             throw e;
         }
 
-        String startingTileS = returnPackage.getStartingTileS();
-        char startingfile = startingTileS.charAt(0);
-        int startingrank = Character.getNumericValue(startingTileS.charAt(1)) - 1;
+        String startTileS = returnPackage.getStartTileS();
+        char startfile = startTileS.charAt(0);
+        int startrank = Character.getNumericValue(startTileS.charAt(1)) - 1;
 
-        // The startingrank multiplication jumps ranks, while to get the right startingfile
-        int startingTileI = (startingrank * 8) + (8 - (startingfile - 96));
-        returnPackage.setStartingTileI(startingTileI);
+        // The startrank multiplication jumps ranks, while to get the right startfile
+        int startTileI = (startrank * 8) + (8 - (startfile - 96));
+        returnPackage.setStartTileI(startTileI);
 
-        String endingTileS = returnPackage.getEndingTileS();
-        char endingfile = endingTileS.charAt(0);
-        int endingrank = Character.getNumericValue(endingTileS.charAt(1)) - 1;
+        String endTileS = returnPackage.getEndTileS();
+        char endfile = endTileS.charAt(0);
+        int endrank = Character.getNumericValue(endTileS.charAt(1)) - 1;
 
-        int endingTileI = (endingrank * 8) + (8 - (endingfile - 96));
-        returnPackage.setStartingTileI(endingTileI);
+        int endTileI = (endrank * 8) + (8 - (endfile - 96));
+        returnPackage.setEndTileI(endTileI);
 
-        returnPackage.setDistance(startingTileI - endingTileI);
+        returnPackage.setDistance(endTileI - startTileI);
 
         return returnPackage;
     }
 
-    public boolean tileCheck(TilePackage returnPackage) throws InvalidTileError {
+    private boolean tileCheck(TilePackage returnPackage) throws InvalidTileError {
         boolean playerColour = returnPackage.getPlayerColour();
 
-        String startingTileS = returnPackage.getStartingTileS();
-        String endingTileS = returnPackage.getEndingTileS();
-        if (startingTileS.length() != 2) {
-            String errorMsg = "Invalid Starting Tile Length.";
-            throw new InvalidTileError(errorMsg, startingTileS, playerColour);
+        String startTileS = returnPackage.getStartTileS();
+        String endTileS = returnPackage.getEndTileS();
+        if (startTileS.length() != 2) {
+            String errorMsg = "Invalid Start Tile Length.";
+            throw new InvalidTileError(errorMsg, startTileS, playerColour);
         }
-        if (endingTileS.length() != 2) {
-            String errorMsg = "Invalid Ending Tile Length.";
-            throw new InvalidTileError(errorMsg, endingTileS, playerColour);
-        }
-
-        char file = startingTileS.charAt(0);
-        int rank = Character.getNumericValue(startingTileS.charAt(1));
-        if (rank < 0) {
-            String errorMsg = "Invalid Rank Character.";
-            throw new InvalidTileError(errorMsg, startingTileS, playerColour);
+        if (endTileS.length() != 2) {
+            String errorMsg = "Invalid End Tile Length.";
+            throw new InvalidTileError(errorMsg, endTileS, playerColour);
         }
 
-        if (file < 97 || file > 104) {
-            String errorMsg = "Invalid File.";
-            throw new InvalidTileError(errorMsg, startingTileS, playerColour);
-        }
-        if (rank < 1 || rank > 8) {
-            String errorMsg = "Invalid Rank.";
-            throw new InvalidTileError(errorMsg, startingTileS, playerColour);
+        char startfile = startTileS.charAt(0);
+        int startrank = Character.getNumericValue(startTileS.charAt(1));
+        if (startrank < 0) {
+            String errorMsg = "Invalid Start Rank Character.";
+            throw new InvalidTileError(errorMsg, startTileS, playerColour);
         }
 
-        file = endingTileS.charAt(0);
-        rank = Character.getNumericValue(endingTileS.charAt(1));
-        if (rank < 0) {
-            String errorMsg = "Invalid Rank Character.";
-            throw new InvalidTileError(errorMsg, endingTileS, playerColour);
+        if (startfile < 97 || startfile > 104) {
+            String errorMsg = "Invalid Start File.";
+            throw new InvalidTileError(errorMsg, startTileS, playerColour);
+        }
+        if (startrank < 1 || startrank > 8) {
+            String errorMsg = "Invalid Start Rank.";
+            throw new InvalidTileError(errorMsg, startTileS, playerColour);
         }
 
-        if (file < 97 || file > 104) {
-            String errorMsg = "Invalid File.";
-            throw new InvalidTileError(errorMsg, endingTileS, playerColour);
+        char endfile = endTileS.charAt(0);
+        int endrank = Character.getNumericValue(endTileS.charAt(1));
+        if (endrank < 0) {
+            String errorMsg = "Invalid End Rank Character.";
+            throw new InvalidTileError(errorMsg, endTileS, playerColour);
         }
-        if (rank < 1 || rank > 8) {
-            String errorMsg = "Invalid Rank.";
-            throw new InvalidTileError(errorMsg, endingTileS, playerColour);
+
+        if (endfile < 97 || endfile > 104) {
+            String errorMsg = "Invalid End File.";
+            throw new InvalidTileError(errorMsg, endTileS, playerColour);
+        }
+        if (endrank < 1 || endrank > 8) {
+            String errorMsg = "Invalid End Rank.";
+            throw new InvalidTileError(errorMsg, endTileS, playerColour);
+        }
+
+        if (startTileS.contentEquals(endTileS)) {
+            String errorMsg = "Start Tile Equals End Tile.";
+            throw new InvalidTileError(errorMsg, startTileS, playerColour);
         }
 
         return true;

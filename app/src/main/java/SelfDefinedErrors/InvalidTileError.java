@@ -13,4 +13,8 @@ public class InvalidTileError extends RuntimeException {
     public String getErrorTile() {
         return this.errorTile;
     }
+
+    public boolean getPlayerColour() {
+        return this.playerColour;
+    }
 }

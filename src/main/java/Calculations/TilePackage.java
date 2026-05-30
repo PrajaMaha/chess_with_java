@@ -9,7 +9,7 @@ public class TilePackage {
 
     private long distance;
 
-    private TilePackage(boolean playerColour, String startingTileS, String endingTileS) {
+    public TilePackage(boolean playerColour, String startingTileS, String endingTileS) {
         this.playerColour = playerColour;
         this.startingTileS = startingTileS;
         this.endingTileS = endingTileS;
